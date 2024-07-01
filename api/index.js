@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
-
+import authRoutes from "./routes/auth.route.js";
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -20,3 +22,4 @@ app.listen(process.env.PORT, () => {
   console.log("server running on port 3002aaaaaaaa");
 });
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
