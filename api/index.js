@@ -4,14 +4,16 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
-// Load environment variables from .env file
+
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(
+    "mongodb+srv://adarsha:laHLyvDvEaDFN4uT@mern-blog.woptneo.mongodb.net/?retryWrites=true&w=majority&appName=mern-blog"
+  )
   .then(() => {
     console.log("mongo db is connected ");
   })

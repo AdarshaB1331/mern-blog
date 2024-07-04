@@ -3,8 +3,7 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 
 export const signup = async (req, res, next) => {
-  // Add `next` as the third parameter
-  const { username, email, password } = req.body; // Remove `next` from `req.body`
+  const { username, email, password } = req.body;
 
   if (
     !username ||
@@ -14,7 +13,7 @@ export const signup = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    return next(errorHandler(400, "All fields are required")); // Properly call `next`
+    return next(errorHandler(400, "All fields are required"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -26,7 +25,7 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.send("Sign up successful");
+    res.status(201).json({ success: true, message: "Sign up successful" });
   } catch (err) {
     next(err);
   }
