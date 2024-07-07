@@ -32,12 +32,8 @@ export default function SignUp() {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
 
-      const data = await res.json();
-      // Check `data` to ensure it has the expected structure
-
       navigate("/sign-in");
     } catch (error) {
-      console.error("Fetch error:", error); // Log fetch error for debugging
       setErrorMessage(error); // Update error message to a more generic one
       setLoading(false);
     }
